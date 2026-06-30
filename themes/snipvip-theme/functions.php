@@ -184,3 +184,16 @@ function snipvip_footer(): void {
     </footer>
     <?php
 }
+
+// Use custom auth page instead of wp-login.php
+add_filter( 'login_url', function( $url ) {
+    return home_url( '/login/' );
+}, 10 );
+
+add_filter( 'register_url', function( $url ) {
+    return home_url( '/login/?action=register' );
+}, 10 );
+add_filter( 'theme_page_templates', function( $templates ) {
+    $templates['page-auth.php'] = 'Auth Page';
+    return $templates;
+} );

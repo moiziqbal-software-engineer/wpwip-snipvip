@@ -85,7 +85,9 @@ class SnipVIP_Webhook {
     private static function handle_checkout_completed( array $session ): void {
         $user_id = (int) ( $session['client_reference_id'] ?? 0 );
         $plan    = sanitize_key( $session['metadata']['plan'] ?? '' );
-
+        // Temporary debug
+    error_log( 'SnipVIP Webhook — session: ' . wp_json_encode( $session ) );
+    error_log( 'SnipVIP Webhook — user_id: ' . $user_id . ' plan: ' . $plan );
         if ( ! $user_id || ! $plan ) {
             return;
         }
