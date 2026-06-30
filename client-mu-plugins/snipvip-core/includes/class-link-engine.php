@@ -143,16 +143,14 @@ class SnipVIP_Link_Engine {
      */
     public static function get_user_links( int $user_id, int $limit = 50, int $offset = 0 ): array {
         global $wpdb;
-
+    
         $links_table  = SnipVIP_DB::links_table();
         $clicks_table = SnipVIP_DB::clicks_table();
-
+    
         // phpcs:ignore WordPress.DB.DirectDatabaseQuery
         $results = $wpdb->get_results(
             $wpdb->prepare(
-                "SELECT l.*,
-                        COUNT(c.id) as click_count,
-                        home_url() as site_url
+                "SELECT l.*, COUNT(c.id) as click_count
                  FROM {$links_table} l
                  LEFT JOIN {$clicks_table} c ON c.link_id = l.id
                  WHERE l.user_id = %d AND l.is_active = 1
@@ -165,8 +163,8 @@ class SnipVIP_Link_Engine {
             ),
             ARRAY_A
         );
-
-        // Add the full short URL to each row
+    
+        // Add short URL in PHP not SQL
         return array_map( function( $link ) {
             $link['short_url'] = home_url( '/?s=' . $link['slug'] );
             return $link;

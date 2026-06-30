@@ -6,19 +6,19 @@ class SnipVIP_Checkout {
     // Stripe price IDs — replace these with your real ones from Stripe dashboard
     const PLANS = [
         'starter'    => [
-            'price_id' => 'price_starter_id_from_stripe',
+            'price_id' => 'price_1TnrFm0W0jWkiUXJWSRwhDYE',
             'name'     => 'Starter',
             'limit'    => 100,
             'amount'   => '$9/mo',
         ],
         'pro'        => [
-            'price_id' => 'price_pro_id_from_stripe',
+            'price_id' => 'price_1TnrGX0W0jWkiUXJ4fnxo2Fo',
             'name'     => 'Pro',
             'limit'    => 1000,
             'amount'   => '$29/mo',
         ],
         'enterprise' => [
-            'price_id' => 'price_enterprise_id_from_stripe',
+            'price_id' => 'price_1TnrGx0W0jWkiUXJVSAU33a0',
             'name'     => 'Enterprise',
             'limit'    => -1,
             'amount'   => '$99/mo',
